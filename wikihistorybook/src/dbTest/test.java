@@ -46,7 +46,8 @@ public class test {
 		
 		System.out.println("processing....");
 		//SQL Query als String formulieren
-		String query2="SELECT * FROM wikihistory.people where year_from > 1964";
+		String query2="SELECT * FROM wikihistory.people "
+				+ "WHERE year_from > 1964";
 		//Query ausf?hren
 		ResultSet result= db.executeQuery(query2);
 		//Resultat ausgeben
