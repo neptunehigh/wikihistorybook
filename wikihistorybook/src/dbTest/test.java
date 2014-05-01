@@ -1,3 +1,5 @@
+package dbTest;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -6,7 +8,7 @@ public class test {
 
 	/**
 	 * Testclass
-	 * @author simon flŸhmann
+	 * @author simon fl?hmann
 	 */
 		
 	// main method
@@ -14,12 +16,12 @@ public class test {
 		
 		//DB als Singleton
 		DBProvider db = DBProvider.getInstance();		
-		//DB Verbindung öffnen
+		//DB Verbindung ?ffnen
 		db.getConnection();
 		
 		//SQL Query als String formulieren
 		String query="SELECT * FROM wikihistory.people where year_from > 1964";
-		//Query ausführen
+		//Query ausf?hren
 		ResultSet result= db.executeQuery(query);
 		
 		

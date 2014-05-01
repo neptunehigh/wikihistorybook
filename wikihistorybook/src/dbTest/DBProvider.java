@@ -1,3 +1,5 @@
+package dbTest;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -50,10 +52,10 @@ public class DBProvider {
 	}
 
 	/**
-	 * Führt mysql select query aus
+	 * F?hrt mysql select query aus
 	 * 
 	 * @param query
-	 *            String Query, die ausgeführt werden soll
+	 *            String Query, die ausgef?hrt werden soll
 	 * @return ResultSet oder null
 	 */
 	public ResultSet executeQuery(String query){
