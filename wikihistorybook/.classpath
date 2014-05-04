@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.22-bin.jar"/>
-	<classpathentry kind="lib" path="/Users/Silvio/git/wikihistorybook/wikihistorybook/lib/gs-algo-1.2.jar"/>
-	<classpathentry kind="lib" path="/Users/Silvio/git/wikihistorybook/wikihistorybook/lib/gs-core-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/gs-algo-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/gs-core-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
