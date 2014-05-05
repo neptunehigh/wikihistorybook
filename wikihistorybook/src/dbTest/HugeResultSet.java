@@ -25,8 +25,9 @@ public class HugeResultSet {
       try {
         Class.forName(driverName).newInstance();
         connection = DriverManager.getConnection(url+dbName, userName, password);
-        PreparedStatement  stmt = connection.prepareStatement("SELECT id, name FROM wikihistory.people where year_from > ?");
+        PreparedStatement  stmt = connection.prepareStatement("SELECT id, name FROM wikihistory.people where year_from > ? AND year_to < ?");
         stmt.setInt(1, 1964);
+        stmt.setInt(2, 2014);
         ResultSet res = stmt.executeQuery();
         if (res.getType() == ResultSet.TYPE_FORWARD_ONLY) {
           System.out.println("ResultSet Type Forword-Only.");
