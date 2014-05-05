@@ -27,7 +27,7 @@ public class test {
 		ResultSet result= db.executeQuery(query);
 
 
-		//Resultat ausgeben!
+		//Resultat ausgeben
 		try {
 			while ( result.next() )
 				  System.out.printf( "name: %s, year_from: %s%n", result.getString(2),
