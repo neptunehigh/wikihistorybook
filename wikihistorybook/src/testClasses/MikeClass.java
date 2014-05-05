@@ -8,7 +8,6 @@ import dbTest.DBProvider;
 /**
  * Testclass
  * @author michael sidler
- * github-account: revolucerne 
  */
 public class MikeClass {
 	
