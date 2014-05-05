@@ -149,6 +149,11 @@ public class GSSwing implements Runnable {
 						for (Node node: getGraph().getEachNode()) {
 							node.addAttribute("ui.style", "fill-color:green;");
 						}
+					}else if(!button.isSelected()){
+						System.out.println("Green OFF");
+						for (Node node: getGraph().getEachNode()) {
+							node.addAttribute("ui.style", "fill-color:black;");
+						}
 					}
 				}
 			});
