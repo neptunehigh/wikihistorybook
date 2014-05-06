@@ -2,69 +2,103 @@ package testClasses;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import org.graphstream.graph.EdgeRejectedException;
+import org.graphstream.graph.ElementNotFoundException;
 import org.graphstream.graph.Graph;
+import org.graphstream.graph.IdAlreadyInUseException;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.layout.springbox.implementations.SpringBox;
+import org.graphstream.ui.swingViewer.View;
+import org.graphstream.ui.swingViewer.Viewer;
+import org.graphstream.ui.swingViewer.Viewer.CloseFramePolicy;
+import org.graphstream.ui.swingViewer.Viewer.ThreadingModel;
 
 import dbTest.DBProvider;
 
-public class testGraph {
+public class testGraph{
 	public static void main(String[] args) {
-		  long start = System.currentTimeMillis();
+		
+		long start = System.currentTimeMillis();
+		Viewer viewer;
+		View view;
 		  
-		  HashMap<String, String> people = new HashMap<String, String>();
-		  HashMap<String, String> connections = new HashMap<String, String>();
-		  Graph graph = new SingleGraph("Test Graph");
-
+		Graph graph = new SingleGraph("Test Graph");
+		graph.addAttribute("ui.antialias");
+        graph.addAttribute("ui.quality");
+		//graph.addAttribute("ui.stylesheet", "graph { fill-color: red; size: 1px; }");
+		
 		// DB als Singleton
 		DBProvider db = DBProvider.getInstance();
-		// DB Verbindung �ffnen
+		
+		// DB Verbindung öffnen
 		db.getConnection();
-		// SQL Query als String formulieren und unbedingt die Tabellencols mitnehmen
-		String query="SELECT id, name FROM wikihistory.people WHERE id = 38904 OR id = 7559";
-		String query2="SELECT person_to, person_from FROM wikihistory.connections WHERE person_to = 38904 ";
+		
+		//String query="SELECT id, name FROM wikihistory.people WHERE year_from > 850 AND year_to < 900 AND year_to IS NOT NULL";
+		String query="SELECT person_to, person_from FROM wikihistory.connections WHERE year_to > 0 AND year_from < 5 ";
 		
 		// Query ausf�hren
-		ResultSet result= db.executeQuery(query);
-  	  	ResultSet result2= db.executeQuery(query2);
+		ResultSet connections = db.executeQuery(query);
 		
 		// Resultat ausgeben
-		try {
-			while ( result.next() ){
-				people.put(result.getString("id"), result.getString("name"));
-			} 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		try {
-			while (result2.next() ){
-				if(people.containsKey(result2.getString("person_from")) && people.containsKey(result2.getString("person_to"))){
-					connections.put(result2.getString("person_from"), result2.getString("person_to"));
-				}
 				
-			} 
+		try {
+			while (connections.next() ){
+				try{
+					
+					graph.addEdge(connections.getString("person_from")+connections.getString("person_to"), 
+							connections.getString("person_from"), connections.getString("person_to"));
+					
+				} catch (ElementNotFoundException e){
+					
+					try{
+						
+						graph.addNode(connections.getString("person_from")).addAttribute("ui.style", "size: 10px;");
+						
+					} catch (IdAlreadyInUseException f){
+					}
+					
+					try{
+						
+						graph.addNode(connections.getString("person_to")).addAttribute("ui.style", "size: 10px; fill-color: rgb(0,100,255);");
+						
+					} catch (IdAlreadyInUseException f){
+					}
+
+					graph.addEdge(connections.getString("person_from")+connections.getString("person_to"),
+							connections.getString("person_from"), connections.getString("person_to"));
+					
+				} catch (EdgeRejectedException e){
+					
+				}
+			}
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		// DB Verbindung schliessen
 		db.closeConnection();
 		
-		 Set<String> keys = people.keySet();
-	      for(String key: keys){
-	    	  graph.addNode(people.get(key));
-	      }
-	 
-	      Set<String> keys2 = connections.keySet();
-	      for(String key2: keys2){
-	    	  graph.addEdge(key2+connections.get(key2),people.get(key2),people.get(connections.get(key2)));
-	      }
-	      			
-		graph.display();
+		viewer = new Viewer(graph, ThreadingModel.GRAPH_IN_SWING_THREAD);
+		//viewer.enableAutoLayout();
+		viewer.enableAutoLayout(new SpringBox(false));
+		view = viewer.addDefaultView(false);		
+ 
+		viewer.setCloseFramePolicy(CloseFramePolicy.EXIT);
+		
+		JPanel panel = new JPanel(new java.awt.GridLayout(1, 1));
+		panel.add(view);
+		JFrame frame = new javax.swing.JFrame("GraphStream in Swing");
+		frame.getContentPane().add(panel);
+		frame.setSize(1000, 800);
+		frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		
+		//graph.display();
 	    System.out.println("finished in : "+(System.currentTimeMillis()-start));
 
 	}
