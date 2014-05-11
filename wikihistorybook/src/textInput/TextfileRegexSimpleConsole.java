@@ -6,13 +6,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
- * Class for <b>importing a textfile</b> and show the input in the console.
+ * Class for importing a textfile and show the input in the console. <br />
+ * Compare to {@link TextfileSimpleConsole} this file furthermore <b>only publish valid lines</b>.
  * 
  * @author michael sidler
  */
-public class TextfileSimpleConsole {
+public class TextfileRegexSimpleConsole {
 
 	public static void main(String[] args) {
 		System.out.println("Read content from a textfile");
@@ -30,7 +33,12 @@ public class TextfileSimpleConsole {
 		String line;
 		try {
 			while ((line = br.readLine()) != null) {
-				System.out.println(line);
+				// Checks integer + tab + text, where "text" contains word characters (\w)
+				// However: A word character checks short for [a-zA-Z_0-9] and we have special signs
+				if(Pattern.matches( "(\\d)+\\t(\\w)+", line)){
+					System.out.println(line);
+				}
+				
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
