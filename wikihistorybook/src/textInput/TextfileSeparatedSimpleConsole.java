@@ -27,6 +27,7 @@ public class TextfileSeparatedSimpleConsole {
 		String line = null;
 		try {
 			while ((line = br.readLine()) != null) {
+				System.out.println(line);
 				// Split all values between the tabs
 				String tmp[] = line.split("\t");
 				combo.put(Integer.parseInt(tmp[0]), tmp[1]);
