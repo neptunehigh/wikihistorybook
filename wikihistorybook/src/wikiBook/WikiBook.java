@@ -77,6 +77,7 @@ public class WikiBook extends JFrame{
 		setSize(1000, 2000);
 		setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+		addWindowListener(new CloseWindowListener(this));
 
 	}
 	
@@ -108,6 +109,8 @@ public class WikiBook extends JFrame{
 	}
 	
 }
+
+
 
 
 
