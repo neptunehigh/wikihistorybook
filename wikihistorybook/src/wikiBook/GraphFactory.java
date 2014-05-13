@@ -43,6 +43,9 @@ public class GraphFactory extends Thread{
 	}
 	
 	public void run() {
+		if (progressBar != null) {
+			progressBar.setIndeterminate(true);
+		}
 		people = db.getPeople(cur_year);
 		try {
 			while (people.next()) {
@@ -60,7 +63,10 @@ public class GraphFactory extends Thread{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(peopleList.size() + " Nodes");
+
+		if (progressBar != null) {
+			progressBar.setIndeterminate(false);
+		}
 		
 		for (String id : peopleList) {
 			prg++;
