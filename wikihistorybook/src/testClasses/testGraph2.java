@@ -46,7 +46,7 @@ public class testGraph2 {
 		long start = System.currentTimeMillis();
 		Viewer viewer;
 		View view;
-		int year = 1400;
+		int year = -867;
 		  
 		Graph graph = new SingleGraph("Test Graph");
 		graph.addAttribute("ui.antialias");
@@ -151,7 +151,7 @@ public class testGraph2 {
 		
 		JPanel panel = new JPanel(new java.awt.BorderLayout(2, 1));	
 		panel.add(view,BorderLayout.CENTER);
-		panel.add(framesPerSecond,BorderLayout.SOUTH);
+//		panel.add(framesPerSecond,BorderLayout.SOUTH);
 		
 		
 		JFrame frame = new javax.swing.JFrame("GraphStream in Swing");
