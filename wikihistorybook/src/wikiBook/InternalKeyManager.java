@@ -1,10 +1,12 @@
 package wikiBook;
 
+
 import java.awt.event.KeyEvent;
 
 import org.graphstream.ui.swingViewer.util.DefaultShortcutManager;
 
 public class InternalKeyManager extends DefaultShortcutManager {
+	
 	
 	public InternalKeyManager(){
 		super();
