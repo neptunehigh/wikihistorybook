@@ -4,8 +4,6 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.graphstream.graph.Graph;
-
 class SliderListener implements ChangeListener {
 
 	private WikiBook wikiBook;

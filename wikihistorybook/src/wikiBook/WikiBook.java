@@ -1,35 +1,27 @@
 package wikiBook;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
-import org.graphstream.graph.EdgeRejectedException;
-import org.graphstream.graph.ElementNotFoundException;
 import org.graphstream.graph.Graph;
-import org.graphstream.graph.IdAlreadyInUseException;
-import org.graphstream.graph.Node;
-import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.graphicGraph.GraphicElement;
 import org.graphstream.ui.swingViewer.View;
 import org.graphstream.ui.swingViewer.Viewer;
-import org.graphstream.ui.swingViewer.Viewer.CloseFramePolicy;
 import org.graphstream.ui.swingViewer.Viewer.ThreadingModel;
 
 import dbTest.DBProvider;
 
 public class WikiBook extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private JProgressBar progressBar;
 	private DBProvider db;
@@ -67,7 +59,7 @@ public class WikiBook extends JFrame{
 		progressBar.setValue(0);
 		progressBar.setStringPainted(true);
 		
-		graphFactory = new GraphFactory(this, 0);
+		graphFactory = new GraphFactory(this, YEAR_INIT);
 		graphFactory.start();
 
 		panel.add(tLine,BorderLayout.SOUTH);
