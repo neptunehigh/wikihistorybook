@@ -32,7 +32,7 @@ public class WikiBook extends JFrame{
 	private final int SLIDER_MAX = 2000;
 	private final int SLIDER_INIT = 0;
 	
-	private final int YEAR_INIT = 0;
+	private final int YEAR_INIT = -867;
 		
 	public WikiBook(){
 		super("The-Wiki-History-Book");
@@ -51,11 +51,13 @@ public class WikiBook extends JFrame{
 		tLine.setPaintTicks(true);
 		tLine.setPaintLabels(true);
 		tLine.addChangeListener(new SliderListener(this));
+		tLine.setFocusable(false);
 		
 		progressBar = new JProgressBar();
 		progressBar.setValue(0);
 		progressBar.setStringPainted(true);
 		progressBar.setIndeterminate(true);
+		progressBar.setFocusable(false);
 		
 		graphFactory = new GraphFactory(this, YEAR_INIT);
 		graphFactory.start();
@@ -68,6 +70,7 @@ public class WikiBook extends JFrame{
 		setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		addWindowListener(new CloseWindowListener(this));
+		
 
 	}
 	
@@ -77,17 +80,20 @@ public class WikiBook extends JFrame{
  	    viewer = new Viewer(graph, ThreadingModel.GRAPH_IN_SWING_THREAD);
  		viewer.enableAutoLayout();
  		newView = viewer.addDefaultView(false);
- 		newView.setMouseManager(new InternalMouseManager(lastElement));
- 		newView.setShortcutManager(new InternalKeyManager());
+ 		newView.getCamera().setViewPercent(0.8);
  		
  		try{
  			panel.remove(view);
  		}catch(NullPointerException e){
  			
  		}
+ 		
+ 		newView.setMouseManager(new InternalMouseManager(lastElement));
+ 		newView.setShortcutManager(new InternalKeyManager());
+ 		
+ 		view = newView;
  		panel.add(newView, BorderLayout.CENTER);
  		panel.updateUI();
- 		view = newView;
 	}
 	
 	public DBProvider getDB(){
