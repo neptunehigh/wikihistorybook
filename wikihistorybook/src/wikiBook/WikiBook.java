@@ -92,8 +92,10 @@ public class WikiBook extends JFrame{
  		newView.setShortcutManager(new InternalKeyManager());
  		
  		view = newView;
+ 		view.setFocusable(true);
  		panel.add(newView, BorderLayout.CENTER);
  		panel.updateUI();
+ 		view.requestFocusInWindow();
 	}
 	
 	public DBProvider getDB(){
@@ -105,6 +107,8 @@ public class WikiBook extends JFrame{
 	}
 	
 }
+
+
 
 
 
