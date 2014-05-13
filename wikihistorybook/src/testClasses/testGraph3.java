@@ -45,7 +45,7 @@ public class testGraph3 {
 		
 		System.out.println("connected");
 
-		Graph graph = getGraph(200, db);
+		Graph graph = getGraph(-867, db);
 								
 		viewer = new Viewer(graph, ThreadingModel.GRAPH_IN_SWING_THREAD);
 		viewer.enableAutoLayout();
@@ -69,7 +69,6 @@ public class testGraph3 {
 		framesPerSecond.setPaintLabels(true);
 		framesPerSecond.setSnapToTicks (true);
 		framesPerSecond.addChangeListener(new SliderListener(db,panel,view));
-		
 		
 		panel.add(view, BorderLayout.CENTER);
 		panel.add(framesPerSecond,BorderLayout.SOUTH);
