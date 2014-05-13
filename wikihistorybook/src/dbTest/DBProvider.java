@@ -19,6 +19,13 @@ public class DBProvider {
 	
 	private static String connectionsQuery = "SELECT person_to, person_from FROM wikihistory.connections WHERE year_from < ? AND year_to > ?";
 	private PreparedStatement connectionsOfYear;
+	
+	private static String peopleQuery = "SELECT id, name FROM wikihistory.people WHERE year_from < ? AND year_to > ?";
+	private PreparedStatement peopleOfYear;
+	
+	private static String conFromQuery = "SELECT person_to FROM wikihistory.connections WHERE person_from = ? AND year_from < ? AND year_to > ?";
+	private PreparedStatement connectionsFrom;
+	
 
 	public static DBProvider getInstance() {
 		if (provider == null)
@@ -34,6 +41,9 @@ public class DBProvider {
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				DBProvider.connection = DriverManager.getConnection(CONN_QUERY);
 				this.connectionsOfYear = connection.prepareStatement(connectionsQuery,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+				this.peopleOfYear = connection.prepareStatement(peopleQuery,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+				this.connectionsFrom = connection.prepareStatement(conFromQuery,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
 			} catch (ClassNotFoundException e) {
 				System.out.println("Class not found!");
 			} catch (SQLException e) {
@@ -78,7 +88,7 @@ public class DBProvider {
 	}
 	
 	
-	// gibt alle Connections zu einem bestimmten Jahr zurück
+	// gibt alle Connections zu einem bestimmten Jahr zur��ck
 	public ResultSet getConnections(int year){
 		ResultSet res=null;
 		
@@ -96,5 +106,43 @@ public class DBProvider {
 		return res;
 		
 	}
+	
+	public ResultSet getPeople(int year){
+		ResultSet res=null;
+		
+		if(connection==null)getConnection();
+		
+		try {
+			peopleOfYear.setInt(1, year);
+			peopleOfYear.setInt(2, year);
+			peopleOfYear.setFetchSize(Integer.MIN_VALUE);
+			res = peopleOfYear.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+		
+	}
+	
+	public ResultSet getConnectionsFrom(String id, int year){
+		ResultSet res=null;
+		
+		if(connection==null)getConnection();
+		
+		try {
+			connectionsFrom.setString(1, id);
+			connectionsFrom.setInt(2, year);
+			connectionsFrom.setInt(3, year);
+			//connectionsFrom.setFetchSize();
+			res = connectionsFrom.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+		
+	}
+	
 
 }
