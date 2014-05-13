@@ -18,9 +18,6 @@ import dbTest.DBProvider;
 
 public class WikiBook extends JFrame{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private JProgressBar progressBar;
@@ -58,6 +55,7 @@ public class WikiBook extends JFrame{
 		progressBar = new JProgressBar();
 		progressBar.setValue(0);
 		progressBar.setStringPainted(true);
+		progressBar.setIndeterminate(true);
 		
 		graphFactory = new GraphFactory(this, YEAR_INIT);
 		graphFactory.start();
