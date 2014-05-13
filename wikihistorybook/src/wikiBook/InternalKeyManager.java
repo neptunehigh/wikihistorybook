@@ -25,8 +25,7 @@ public class InternalKeyManager extends DefaultShortcutManager {
 		case KeyEvent.VK_Q:
 			view.getCamera().setViewPercent(p - 0.1);
 			break;
-		default:
-			System.out.println("keypressed");
+
 		}
 	}
 
