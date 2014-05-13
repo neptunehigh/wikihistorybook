@@ -16,7 +16,6 @@ class SliderListener implements ChangeListener {
         JSlider source = (JSlider)e.getSource();
         if (!source.getValueIsAdjusting()) {
             int time = (int)source.getValue();
-            System.out.println(time);
             GraphFactory factory = new GraphFactory(wikiBook, time);
             factory.start(); 
         }    
