@@ -1,11 +1,24 @@
-node {
-    fill-color: grey;
-    size: 10px;
-    stroke-mode: plain;
-    stroke-color: black;
-    stroke-width: 1px;
+graph {
+    fill-color: white;
 }
-node.important {
-    fill-color: red;
-    size: 15px;
+node { 
+	size: 12px; 
+	fill-color: #8C2; 
+	text-mode: hidden;
+	text-alignment: under; 
+	text-color: white; 
+	text-style: bold; 
+	text-background-mode: rounded-box; 
+	text-background-color: #222C; 
+	text-padding: 5px, 4px; 
+	text-offset: 0px, 5px;
+	stroke-mode: plain; 
+	stroke-color: #555;
 }
+
+edge {
+    shape: line;
+    fill-color: #222;
+}
+
+
