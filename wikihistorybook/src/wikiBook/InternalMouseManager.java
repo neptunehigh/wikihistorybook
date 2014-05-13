@@ -13,12 +13,12 @@ public class InternalMouseManager extends DefaultMouseManager {
 	GraphicElement ge = null;
 	
 	public InternalMouseManager(GraphicElement e){
-		super();
+//		super();
 		this.ge = e;
 	}
 	
 	public InternalMouseManager(){
-		super();
+//		super();
 	}
 	
 	protected void mouseButtonPressOnElement(GraphicElement element,
@@ -29,7 +29,14 @@ public class InternalMouseManager extends DefaultMouseManager {
 	}
 	
 	public void mouseClicked(MouseEvent e){
-		//super.mouseClicked(e);
+		
+	}
+	
+	public void mouseDragged(MouseEvent e){
+		
+	}
+	
+	public void mousePressed(MouseEvent e){
 		
 	}
 	
