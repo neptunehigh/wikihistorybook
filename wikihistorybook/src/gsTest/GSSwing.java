@@ -100,6 +100,7 @@ public class GSSwing implements Runnable {
  
 			JOptionPane.showMessageDialog(view,
 					"You click on " + element.getId());
+			
 		}
 	}
  
