@@ -52,7 +52,7 @@ public class GraphFactory extends Thread{
 				try {
 					Node n = graph.addNode(people.getString("id"));
 					n.addAttribute("label", people.getString("name"));
-					n.addAttribute("layout.weight", 0.01);
+					n.addAttribute("layout.weight", 0.5);
 					peopleList.add(people.getString("id"));
 				} catch (SQLException e) {
 					e.printStackTrace();
