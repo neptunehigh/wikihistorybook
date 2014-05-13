@@ -42,10 +42,8 @@ public class testGraph{
 		
 		// Query ausf�hren
 		//prepared
-		ResultSet connections = db.getConnections(0);
-		
-		//ResultSet connections = db.executeQuery("SELECT person_to, person_from FROM wikihistory.connections WHERE year_from < 1000 AND year_to > 1000");
-		
+		ResultSet connections = db.getConnections(-1000);
+				
 		System.out.println("executed");
 		
 		
@@ -53,7 +51,6 @@ public class testGraph{
 		try {
 			while (connections.next() ){
 				try{
-					
 					graph.addEdge(connections.getString("person_from")+connections.getString("person_to"), 
 							connections.getString("person_from"), connections.getString("person_to"));
 					
