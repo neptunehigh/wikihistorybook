@@ -1,12 +1,14 @@
 package wikiBook;
 
 import java.awt.BorderLayout;
-
+import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JSlider;
+import javax.swing.JTextArea;
 
 import org.graphstream.graph.Graph;
 import org.graphstream.ui.graphicGraph.GraphicElement;
@@ -27,6 +29,7 @@ public class WikiBook extends JFrame{
     private GraphicElement lastElement;
     private JSlider tLine; 
     private GraphFactory graphFactory;
+    private JTextArea outputText;
     
     private final int SLIDER_MIN = -2000;
 	private final int SLIDER_MAX = 2000;
@@ -43,6 +46,11 @@ public class WikiBook extends JFrame{
 		System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
 		
 		panel = new JPanel(new java.awt.BorderLayout());
+		
+		outputText = new JTextArea("\n    select year	   ");
+		outputText.setFocusable(false);
+		outputText.setBackground(Color.LIGHT_GRAY);
+		outputText.setPreferredSize(new Dimension(100,50));
 		
 		tLine = new JSlider(JSlider.HORIZONTAL,
 				SLIDER_MIN, SLIDER_MAX, SLIDER_INIT);
@@ -62,6 +70,7 @@ public class WikiBook extends JFrame{
 		graphFactory = new GraphFactory(this, YEAR_INIT);
 		graphFactory.start();
 
+		panel.add(outputText,BorderLayout.WEST);
 		panel.add(tLine,BorderLayout.SOUTH);
 		panel.add(progressBar, BorderLayout.NORTH);
 
@@ -70,10 +79,7 @@ public class WikiBook extends JFrame{
 		setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		addWindowListener(new CloseWindowListener(this));
-		
-
 	}
-	
 	
 	public void showGraph(Graph graph){
 		View newView;
@@ -104,6 +110,10 @@ public class WikiBook extends JFrame{
 	
 	public JProgressBar getPG(){
 		return progressBar;
+	}
+	
+	public void setOutputText(String text){
+		outputText.setText(text);
 	}
 	
 }
