@@ -22,7 +22,7 @@ public class test {
 		db.getConnection();
 
 		//SQL Query als String formulieren
-		String query="SELECT * FROM wikihistory.people where year_from > 1964";
+		String query="SELECT * FROM wikihistory.people where year_from > 1978";
 		//Query ausf?hren
 		ResultSet result= db.executeQuery(query);
 
