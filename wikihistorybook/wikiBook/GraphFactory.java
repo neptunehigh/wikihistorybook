@@ -98,6 +98,7 @@ public class GraphFactory extends Thread{
 		graph.addAttribute("ui.antialias");
 		graph.addAttribute("ui.quality");
 
+		//
 		graph.addAttribute(
 				"ui.stylesheet",
 				"url('./css/graph_style.css')");
