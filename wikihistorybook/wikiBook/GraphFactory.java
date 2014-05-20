@@ -100,7 +100,7 @@ public class GraphFactory extends Thread{
 
 		graph.addAttribute(
 				"ui.stylesheet",
-				"url('/css/graph_style.css')");
+				"url('./css/graph_style.css')");
 		wikibook.showGraph(graph);
 	}
 
