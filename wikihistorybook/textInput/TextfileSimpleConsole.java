@@ -17,7 +17,7 @@ public class TextfileSimpleConsole {
 		System.out.println("Read content from a textfile");
 		try {
 			readInput(new File(
-					"src/textInput/import-files/top_120_from_people.txt"));
+					"textInput/import-files/top_120_from_people.txt"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

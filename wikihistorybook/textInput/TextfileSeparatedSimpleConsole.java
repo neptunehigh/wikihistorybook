@@ -23,7 +23,7 @@ public class TextfileSeparatedSimpleConsole {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(
 				new FileInputStream(new File(
-						"src/textInput/import-files/top_120_from_people.txt"))));
+						"textInput/import-files/top_120_from_people.txt"))));
 		String line = null;
 		try {
 			while ((line = br.readLine()) != null) {
