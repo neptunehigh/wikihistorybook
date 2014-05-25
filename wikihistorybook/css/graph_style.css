@@ -2,9 +2,16 @@ graph {
     fill-color: white;
 }
 node { 
-	size: 7px; 
-	fill-color: #8C2; 
+	/*size: 7px;*/
+	/*fill-color: #8C2;*/ 
 	text-mode: hidden;
+	stroke-mode: plain; 
+	stroke-color: #555;
+}
+
+node.selected {
+	fill-color: red;
+	text-mode: normal;
 	text-alignment: under; 
 	text-color: white; 
 	text-style: bold; 
