@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JProgressBar;
 
+import org.graphstream.algorithm.BetweennessCentrality;
 import org.graphstream.graph.EdgeRejectedException;
 import org.graphstream.graph.ElementNotFoundException;
 import org.graphstream.graph.Graph;
@@ -27,7 +28,6 @@ public class GraphFactory extends Thread{
 	private ResultSet people;	
 	private double prg;
 	private JProgressBar progressBar;
-
 	
 	public GraphFactory(WikiBook wikibook, int year){
 		super();
@@ -97,12 +97,44 @@ public class GraphFactory extends Thread{
 
 		graph.addAttribute("ui.antialias");
 		graph.addAttribute("ui.quality");
-
-		//ssdsds
+		 BetweennessCentrality bcb = new BetweennessCentrality();
+	        bcb.init(graph);
+	        bcb.compute();
+	        
+	       double maxBt = 0.0001;
+	       for (String id : peopleList) {
+	    	   double bt = graph.getNode(id).getAttribute("Cb");
+	    	   if(bt > maxBt){
+	    		   maxBt = bt;
+	    	   }
+	       }
+	       
+	        for (String id : peopleList) {
+	        		
+	        		double bt = graph.getNode(id).getAttribute("Cb");
+	        		double size = bt/maxBt* 20;
+	        		double weight = bt/maxBt;
+	        		if (weight == 0.0){
+	        			weight = 0.0001;
+	        		}
+	        		if (size < 7){
+	        			size = 7;
+	        		}
+	        		int g = 0;
+	        		int r =255-(int)(255-(bt/maxBt*255));
+	        		int b = (int)(255-(bt/maxBt*255));
+	        		if(r == 0){
+	        			g = 255;
+	        		}
+	        		graph.getNode(id).changeAttribute("ui.style", "fill-color: rgb("+r+","+g+","+b+"); size: "+size+"px;");
+	        		graph.getNode(id).changeAttribute("layout.weight", bt/maxBt);
+	        } 
+	        
 		graph.addAttribute(
 				"ui.stylesheet",
 				"url('./css/graph_style.css')");
 		wikibook.showGraph(graph);
+
 	}
 
 }
