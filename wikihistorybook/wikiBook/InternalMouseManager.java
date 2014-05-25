@@ -35,16 +35,13 @@ public class InternalMouseManager extends DefaultMouseManager {
 		ArrayList<GraphicElement> a = view.allNodesOrSpritesIn(e.getX()-2, e.getY()-2, e.getX()+2, e.getY()+2);
 		if(!a.isEmpty()){
 			if(ge!= null){
-				ge.changeAttribute("ui.style", "text-mode: hidden;");
-				ge.changeAttribute("ui.style", "fill-color: #8C2; ");
+				ge.removeAttribute("ui.class");
 			}
-			a.get(0).changeAttribute("ui.style", "text-mode: normal;");
-			a.get(0).changeAttribute("ui.style", "fill-color: red; ");
+			a.get(0).addAttribute("ui.class", "selected");
 			ge = a.get(0);
 		}else{
 			if(ge!= null){
-				ge.changeAttribute("ui.style", "text-mode: hidden;");
-				ge.changeAttribute("ui.style", "fill-color: #8C2; ");
+				ge.removeAttribute("ui.class");
 			}
 		}
 		
