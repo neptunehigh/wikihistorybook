@@ -17,12 +17,14 @@ public class InternalKeyManager extends DefaultShortcutManager {
 		double p = view.getCamera().getViewPercent();
 		switch (e.getKeyCode()) {
 
-		case KeyEvent.VK_A:
+		case KeyEvent.VK_O:
 			view.getCamera().setViewPercent(p + 0.1);
 			break;
 
-		case KeyEvent.VK_Q:
-			view.getCamera().setViewPercent(p - 0.1);
+		case KeyEvent.VK_I:
+			if(p > 0.2){
+				view.getCamera().setViewPercent(p - 0.1);
+			}
 			break;
 
 		}
