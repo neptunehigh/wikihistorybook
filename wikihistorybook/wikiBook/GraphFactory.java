@@ -58,12 +58,13 @@ public class GraphFactory extends Thread{
 					e.printStackTrace();
 				}
 			}
+			wikibook.setOutputText("Personen: "+peopleList.size());
 		} catch (IdAlreadyInUseException f) {
 			f.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
 		if (progressBar != null) {
 			progressBar.setIndeterminate(false);
 		}
