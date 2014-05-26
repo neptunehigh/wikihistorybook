@@ -1,0 +1,15 @@
+Fragen
+------
+
+Es werden nur Knoten angezeigt die miteinander verbunden sind.
+
+Suche nach einer Person zu Beginn ist notwendig (Performance). Startperson.
+Allenfalls mit lokalem File => Namen und Kategorie schon vorgegeben.
+	=> In 10-Jahresschritten werden dann alle Connections angezeigt die zbsp mit Julius Cäsar vernetzt waren.
+
+Wieviele Personen über 4000 Jahre?
+mit Checkboxen Kategorien wählen?
+
+Ab Jahr 1000 grosse Performance Schwierigkeiten da viele Personen => Lösung?
+
+GUI Optimierung => zusätzliche Features?
